@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OUR SHOPING APP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        
+        body {
+            background: #f1f5f9;
+            color: #111;
+        }
+        
+        header {
+            background: #f29ffd;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .search-box {
+            flex: 1;
+            margin: 0 20px;
+            display: flex;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+        
+        .search-box button {
+            background: #5a2a08;
+            border: none;
+            padding: 8px 16px;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .icons span {
+            margin-left: 20px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        
+        nav {
+            background: #fff;
+            padding: 10px 20px;
+            display: flex;
+            gap: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav a {
+            color: #111;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .product-slider {
+            display: flex;
+            overflow: auto;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .product-slider::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .card {
+            flex: 0 0 auto;
+            width: 200;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform .2s;
+        }
+        
+        .card:hover {
+            transform: scale(1.03);
+        }
+        
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        
+        .card h3 {
+            font-size: 16px;
+            margin: 10px 0 6px;
+        }
+        
+        .card p {
+            color: #16a34a;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .card button {
+            background: #f29ffd;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        footer {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Dev.Shoping</div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search for products...">
+            <button onclick="searchProducts()">Search</button>
+        </div>
+        <div class="icons">
+            <span>👤 Login</span>
+            <span>🛒 Cart(<span id="cartCount">0</span>)</span>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#">Electronics</a>
+        <a href="#">Fashion</a>
+        <a href="#">Grocery</a>
+        <a href="#">Home</a>
+        <a href="#">Beauty</a>
+    </nav>
+
+    <section class="products" id="productList">
+        <div class="card" data-name="Phone">
+            <img src="products\mobile01.jpg">
+            <h3>Smartphone</h3>
+            <p>₹59,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card">
+            <img src="products\shoes01.jpg">
+            <h3>Running Shoes</h3>
+            <p>₹2,499</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card">
+            <img src="products\watch01.jpg">
+            <h3>Smart Watch</h3>
+            <p>₹3,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card">
+            <img src="products\shirt01.jpg">
+            <h3>Casual T-Shirt</h3>
+            <p>₹799</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Phone">
+            <img src="products\mobile02.jpg">
+            <h3>Smartphone</h3>
+            <p>₹59,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card">
+            <img src="products\shoes02.jpg">
+            <h3>Running Shoes</h3>
+            <p>₹2,499</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card">
+            <img src="products\watch02.jpg">
+            <h3>Smart Watch</h3>
+            <p>₹3,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card">
+            <img src="products\shirt02.jpg">
+            <h3>Casual T-Shirt</h3>
+            <p>₹799</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Phone">
+            <img src="products\mobile03.jpg">
+            <h3>Smartphone</h3>
+            <p>₹59,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Shoes">
+            <img src="products\shoes03.jpg">
+            <h3>Running Shoes</h3>
+            <p>₹2,499</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Watch">
+            <img src="products\watch03.jpg">
+            <h3>Smart Watch</h3>
+            <p>₹3,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="T-Shirt">
+            <img src="products\shirt03.jpg">
+            <h3>Casual T-Shirt</h3>
+            <p>₹799</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Phone">
+            <img src="products\mobile04.jpg">
+            <h3>Smartphone</h3>
+            <p>₹59,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Shoes">
+            <img src="products\shoes04.jpg">
+            <h3>Running Shoes</h3>
+            <p>₹2,499</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Watch">
+            <img src="products\watch04.jpg">
+            <h3>Smart Watch</h3>
+            <p>₹3,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="T-Shirt">
+            <img src="products\shirt04.jpg">
+            <h3>Casual T-Shirt</h3>
+            <p>₹799</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Phone">
+            <img src="products\mobile05.jpg">
+            <h3>Smartphone</h3>
+            <p>₹59,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Shoes">
+            <img src="products\shoes05.jpg">
+            <h3>Running Shoes</h3>
+            <p>₹2,499</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Watch">
+            <img src="products\watch05.jpg">
+            <h3>Smart Watch</h3>
+            <p>₹3,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="T-Shirt">
+            <img src="products\shirt05.jpg">
+            <h3>Casual T-Shirt</h3>
+            <p>₹799</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Phone">
+            <img src="products\mobile06.jpg">
+            <h3>Smartphone</h3>
+            <p>₹59,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Shoes">
+            <img src="products\shoes06.jpg">
+            <h3>Running Shoes</h3>
+            <p>₹2,499</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Watch">
+            <img src="products\watch06.jpg">
+            <h3>Smart Watch</h3>
+            <p>₹3,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="T-Shirt">
+            <img src="products\shirt06.jpg">
+            <h3>Casual T-Shirt</h3>
+            <p>₹799</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Phone">
+            <img src="products\mobile07.jpg">
+            <h3>Smartphone</h3>
+            <p>₹59,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Shoes">
+            <img src="products\shoes07.jpg">
+            <h3>Running Shoes</h3>
+            <p>₹2,499</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Watch">
+            <img src="products\watch07.jpg">
+            <h3>Smart Watch</h3>
+            <p>₹3,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="T-Shirt">
+            <img src="products\shirt07.jpg">
+            <h3>Casual T-Shirt</h3>
+            <p>₹799</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Phone">
+            <img src="products\mobile08.jpg">
+            <h3>Smartphone</h3>
+            <p>₹59,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Shoes">
+            <img src="products\shoes08.jpg">
+            <h3>Running Shoes</h3>
+            <p>₹2,499</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Watch">
+            <img src="products\watch08.jpg">
+            <h3>Smart Watch</h3>
+            <p>₹3,999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="card" data-name="T-Shirt">
+            <img src="products\shirt08.jpg">
+            <h3>Casual T-Shirt</h3>
+            <p>₹799</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 ShopEasy. All Rights Reserved.
+    </footer>
+
+    <script>
+        let cartCount = 0;
+
+        function addToCart() {
+            cartCount++;
+            document.getElementById("cartCount").textContent = cartCount;
+        }
+
+        function searchProducts() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const products = document.querySelectorAll(".card");
+            products.forEach(p => {
+                const name = p.getAttribute("data-name").toLowerCase();
+                if (name.includes(input)) {
+                    p.style.display = "block";
+                } else {
+                    p.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
